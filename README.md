@@ -24,8 +24,23 @@ python generate_responses.py \
   --cuda_device 0
 ```
 
-#### Step 2: Execute Attack
+#### Step 2: Execute Attack Stage 1,2
 ```
+python pre_attack.py \
+  --input_dir /mnt/c4/watermarked/ \
+  --result_dir /mnt/c4/results/ \
+  --model_path /mnt/models/Meta-Llama-3-8B-Instruct \
+  --gpu 0 \
+  --algorithms KGW,UPV,DIP
+```
+#### Step 2: Execute Attack 
+```
+python attack.py \
+  --model_path /mnt/models/Meta-Llama-3-8B-Instruct \
+  --input_dir /mnt/c4/results/ \
+  --output_dir /mnt/c4/results/ \
+  --gpu 0 \
+  --algorithms KGW,UPV,DIP
 ```
 
 ### Acknowledgement
