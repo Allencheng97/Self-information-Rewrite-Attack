@@ -14,13 +14,15 @@ Attacks** , accepted at **ICML 2025**. SIRA introduces a  black-box attack that 
 
 ### Run the attack
 #### Step 1: Data preparation (Generate Watermarked Text)
+```
 python generate_responses.py \
   --algorithms UPV EWD \
-  --model_path /mnt/models/opt-1.3b \
-  --input_path  \
-  --output_dir  \
-  --cuda_visible_devices 6 \
+  --model_path /mnt/models/opt-2.7b \
+  --input_path /mnt/c4/processed_c4.json \
+  --output_dir /mnt/c4/watermarked/  \
+  --cuda_visible_devices 0 \
   --cuda_device 0
+```
 
 ### Acknowledgement
 This code is based on [MarkLLM](https://github.com/THU-BPM/MarkLLM) . Thanks for their wonderful works.
