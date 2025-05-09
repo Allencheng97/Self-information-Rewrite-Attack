@@ -6,15 +6,23 @@
 This repository contains the official code for **Revealing Weaknesses in Text Watermarking Through Self-Information Rewrite
 Attacks** , accepted at **ICML 2025**. SIRA introduces a  black-box attack that removes text watermarks from large language models (LLMs) by strategically rewriting specific tokens, preserving semantics while minimizing watermark detection signals.
 
-#### Setting up the environment
+### Setting up the environment
 
 - python 3.9
 - pytorch
 - pip install -r requirements.txt
 
-#### Run the attack
+### Run the attack
+#### Step 1: Data preparation (Generate Watermarked Text)
+python generate_responses.py \
+  --algorithms UPV EWD \
+  --model_path /mnt/models/opt-1.3b \
+  --input_path  \
+  --output_dir  \
+  --cuda_visible_devices 6 \
+  --cuda_device 0
 
-#### Acknowledgement
+### Acknowledgement
 This code is based on [MarkLLM](https://github.com/THU-BPM/MarkLLM) . Thanks for their wonderful works.
 
 ## Citing
