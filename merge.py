@@ -26,8 +26,8 @@ def fill_parapharseprompt(input_text):
         + input_text
     )
 
-# Stage 1: paraphrasing
-print("=== Stage 1: Paraphrasing ===")
+# Stage 1: Generate reference text
+print("=== Stage 1: Generate reference text ===")
 pipeline = transformers.pipeline(
     "text-generation",
     model="/mnt/datadisk/syj/models/Meta-Llama-3-8B-Instruct",
