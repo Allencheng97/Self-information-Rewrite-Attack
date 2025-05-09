@@ -24,6 +24,10 @@ python generate_responses.py \
   --cuda_device 0
 ```
 
+#### Step 2: Execute Attack
+```
+```
+
 ### Acknowledgement
 This code is based on [MarkLLM](https://github.com/THU-BPM/MarkLLM) . Thanks for their wonderful works.
 
