@@ -27,11 +27,20 @@ python generate_responses.py \
 #### Step 2: Execute Attack Stage 1,2
 ```
 python pre_attack.py \
-  --input_file your_input.json \
-  --ref_output_file your_ref.json \
-  --blank_output_file your_blank.json \
-  --model_path /your/llama3 \
-  --gpu 0
+  --input_dir /mnt/c4/watermarked/ \
+  --result_dir /mnt/c4/results/ \
+  --model_path /mnt/models/Meta-Llama-3-8B-Instruct \
+  --gpu 0 \
+  --algorithms KGW,UPV,DIP
+```
+#### Step 2: Execute Attack 
+```
+python attack.py \
+  --model_path /mnt/models/Meta-Llama-3-8B-Instruct \
+  --input_dir /mnt/c4/results/ \
+  --output_dir /mnt/c4/results/ \
+  --gpu 0 \
+  --algorithms KGW,UPV,DIP
 ```
 
 ### Acknowledgement
