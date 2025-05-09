@@ -24,8 +24,14 @@ python generate_responses.py \
   --cuda_device 0
 ```
 
-#### Step 2: Execute Attack
+#### Step 2: Execute Attack Stage 1,2
 ```
+python pre_attack.py \
+  --input_file your_input.json \
+  --ref_output_file your_ref.json \
+  --blank_output_file your_blank.json \
+  --model_path /your/llama3 \
+  --gpu 0
 ```
 
 ### Acknowledgement
