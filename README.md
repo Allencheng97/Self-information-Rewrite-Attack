@@ -13,6 +13,9 @@ Attacks** , accepted at **ICML 2025**. SIRA introduces a  black-box attack that 
 - pip install -r requirements.txt
 
 ### Run the attack
+
+Enter scripts folder
+
 #### Step 1: Data preparation (Generate Watermarked Text)
 ```
 python generate_responses.py \
@@ -30,10 +33,11 @@ python pre_attack.py \
   --input_dir /mnt/c4/watermarked/ \
   --result_dir /mnt/c4/results/ \
   --model_path /mnt/models/Meta-Llama-3-8B-Instruct \
+  --threshold 30 \
   --gpu 0 \
   --algorithms KGW,UPV,DIP
 ```
-#### Step 2: Execute Attack 
+#### Step 3: Execute Attack 
 ```
 python attack.py \
   --model_path /mnt/models/Meta-Llama-3-8B-Instruct \
@@ -43,7 +47,22 @@ python attack.py \
   --algorithms KGW,UPV,DIP
 ```
 
+Or you can used the merged script after data preparation:
+
+```bash
+python attack_onestep.py \
+    --orig_input_dir /path/to/your/c4/watermarked/ \
+    --intermediate_dir /path/to/your/intermediate_results/ \
+    --final_output_dir /path/to/your/attack_results/ \
+    --paraphrase_model_path /path/to/your/paraphrase_and_blanking_model \
+    --attack_model_path /path/to/your/attack_model \
+    --threshold 30 \
+    --gpu "0,1" \
+    --algorithms "KGW"
+```
+
 ### Acknowledgement
+
 This code is based on [MarkLLM](https://github.com/THU-BPM/MarkLLM) . Thanks for their wonderful works.
 
 ## Citing
