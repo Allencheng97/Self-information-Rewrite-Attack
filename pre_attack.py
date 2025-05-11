@@ -16,13 +16,14 @@ from visualize.color_scheme import ColorSchemeForContinuousVisualization
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Run paraphrasing + self-information blanking pipeline.")
-    parser.add_argument('--input_dir', type=str, default='/mnt/c4/watermarked/',
+    parser.add_argument('--input_dir', type=str, default='/root/Self-information-Rewrite-Attack-main/dataset/c4/watermarked/',
                         help='Directory containing {algorithm}_response.json input files')
-    parser.add_argument('--result_dir', type=str, default='/mnt/c4/watermarked/',
+    parser.add_argument('--result_dir', type=str, default='/root/Self-information-Rewrite-Attack-main/dataset/c4/watermarked/',
                         help='Directory to store ref and blank output files')
-    parser.add_argument('--model_path', type=str, default='/mnt/models/Meta-Llama-3-8B-Instruct')
-    parser.add_argument('--gpu', type=str, default='0')
-    parser.add_argument('--algorithms', type=str, default='KGW,Unigram,UPV,DIP,EWD,EXP,SIR',
+    parser.add_argument('--model_path', type=str, default='/root/models/meta-llama/Llama-3.2-3B-Instruct/')  
+    parser.add_argument('--threshold', type=int, default=30)  
+    parser.add_argument('--gpu', type=str, default='0', help='GPU IDs to use, e.g., "0,1,2"')
+    parser.add_argument('--algorithms', type=str, default='KGW',
                         help='Comma-separated list of watermark algorithms to process')
     return parser.parse_args()
 
@@ -53,7 +54,7 @@ if __name__ == "__main__":
         device_map="auto",
         do_sample=False
     )
-
+    
     for algorithm in algorithms:
         input_file = os.path.join(args.input_dir, f'{algorithm}_response.json')
         ref_output_file = os.path.join(args.result_dir, f'{algorithm}_ref.json')
@@ -146,6 +147,7 @@ if __name__ == "__main__":
     model = AutoModelForCausalLM.from_pretrained(args.model_path, device_map="auto")
     tokenizer = AutoTokenizer.from_pretrained(args.model_path)
     calculator = SelfInformationCalculator(model=model, tokenizer=tokenizer)
+    threshold = args.threshold
 
     for algorithm in algorithms:
         ref_output_file = os.path.join(args.result_dir, f'{algorithm}_ref.json')
@@ -169,7 +171,7 @@ if __name__ == "__main__":
                 ref_text = item['ref_text']
 
                 tokens, self_info_values = calculator.calculate_self_information(watermarked_text)
-                transformed_tokens = calculator.transform_tokens(tokens, self_info_values, 30)
+                transformed_tokens = calculator.transform_tokens(tokens, self_info_values, threshold)
                 blank_text = "".join(transformed_tokens)
 
                 response_item = {

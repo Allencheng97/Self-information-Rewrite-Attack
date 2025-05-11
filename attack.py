@@ -16,7 +16,7 @@ def parse_args():
     parser.add_argument('--output_dir', type=str, required=True, help='Directory to write {algorithm}_attack.json files.')
     parser.add_argument('--algorithms', type=str, default='KGW,Unigram,UPV,DIP,EWD,EXP,SIR',
                         help='Comma-separated list of watermark algorithms to process.')
-    parser.add_argument('--gpu', type=str, default='0', help='GPU id to use.')
+    parser.add_argument('--gpu', type=str, default='0', help='GPU IDs to use, e.g., "0,1,2"')
     return parser.parse_args()
 
 
