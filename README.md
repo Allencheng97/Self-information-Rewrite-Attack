@@ -69,12 +69,12 @@ This code is based on [MarkLLM](https://github.com/THU-BPM/MarkLLM) . Thanks for
 
 ```bibtex
 @inproceedings{
-cheng2025sira,
-title={Revealing Weaknesses in Text Watermarking Through Self-Information Rewrite
-Attacks},
+cheng2025revealing,
+title={Revealing Weaknesses in Text Watermarking Through Self-Information Rewrite Attacks},
 author={Yixin Cheng and Hongcheng Guo and Yangming Li and Leonid Sigal},
-booktitle={International Conference on Machine Learning},
+booktitle={Forty-second International Conference on Machine Learning},
 year={2025},
+url={https://openreview.net/forum?id=fE3kgW7kMp}
 }
 ```
 
